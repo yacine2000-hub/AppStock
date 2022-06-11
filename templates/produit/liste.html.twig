@@ -1,0 +1,56 @@
+
+   
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste Produits{% endblock %}
+{% set keyword = app.request.get('keyword') %}
+{% set offset = app.request.get('offset') %}
+{% block body %}
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Identifiant</th>
+            <th scope="col">libelle</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Categorie</th>
+            <th scope="col">Supprimer</th>
+            <th scope="col">Modifier</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <th>{{ produit.id }}</th>
+                <th>{{ produit.libelle }}</th>
+                <th>{{ produit.stock }}</th>
+                <th>{{ produit.categorie }}</th>
+                <td><a class="btn btn-sm btn-danger" href="{{ path('produit_delete',{id: produit.id} ) }}" data-bs-toggle="modal" data-bs-target="#my-modal"><i class="fa fa-trash"></i></a></td>
+                <td><a class="btn btn-sm btn-success" href="{{ path('produit_update',{id: produit.id} ) }}" ><i class="fa fa-edit"></i></a></td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+    <a class="btn btn-dark mb-2 orange" href="{{ path('produit_add') }}">Nouveau</a>
+    <a class="btn btn-success mb-2 orange" href="{{ path('app_produit') }}">Retour</a>
+    </div>
+    <div data-controller="confirm"></div>
+    <div class="modal" id="my-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i type="button" class="fa fa-window-close fa-xl" data-bs-dismiss="modal" aria-label="close" aria-hidden="true"></i>
+                </div>
+                <div class="modal-body">
+                    <h4>Voulez-vous vraiment supprimer ce produit?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button  data-bs-dismiss="modal" class="btn btn-danger">Annuler</button>
+                    <button id="confirm-button" class="btn btn-success">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

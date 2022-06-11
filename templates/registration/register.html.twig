@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+<div class="card-header"><h3 class="text-center font-weight-light my-4">Formulaire d'Inscription</h3></div>
+<div class="card-body">
+<form action="" method="post" enctype="multipart/form-data">
+    {{ form_start(registrationForm) }}
+    <div class="form-floating mb-6 mb-md-0">
+        {{ form_row(registrationForm.nom) }}
+    </div>
+    <div class="form-floating mb-6 mb-md-0">
+        {{ form_row(registrationForm.prenom) }}
+    </div>
+    <div class="form-floating mb-6 mb-md-0">
+        {{ form_row(registrationForm.email) }}
+    </div>
+        <div class="form-floating mb-6 mb-md-0">
+        {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
+    </div>
+    <div class="form-floating mb-6 mb-md-0">
+        {{ form_row(registrationForm.agreeTerms) }}
+    </div>
+     <div class="form-group mt-2 ">
+        <button class="btn btn-success orange" type="submit" name="submit" id="submit"><i></i>S'inscrire</button>
+    </div>
+    {{ form_end(registrationForm) }}
+{% endblock %}
